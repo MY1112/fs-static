@@ -31,6 +31,10 @@ const server = http.createServer(function (req,res){
         }
         if (mineTypeMap[extName]) {
             res.setHeader('Content-Type', mineTypeMap[extName]);
+            res.setHeader("Access-Control-Allow-Origin", "*");
+            res.setHeader('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+            res.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
+            res.setHeader('Access-Control-Allow-Headers', ['mytoken','Content-Type']);
         }
         const fileContent = fs.readFileSync(fileName, 'binary')
         console.log(`${req.url} 读取资源 ${fileContent ? 'success' : 'failed'}`)
